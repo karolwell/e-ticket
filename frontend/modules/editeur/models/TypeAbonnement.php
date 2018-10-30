@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $designation
  * @property string $prix
+ * @property string $description
  * @property integer $etat
  * @property integer $created_by
  * @property string $date_create
@@ -42,7 +43,7 @@ class TypeAbonnement extends \yii\db\ActiveRecord
             [['designation', 'prix', 'etat', 'created_by', 'date_create'], 'required'],
             [['etat', 'created_by', 'updated_by'], 'integer'],
             [['date_create', 'date_update'], 'safe'],
-            [['designation', 'prix'], 'string', 'max' => 255],
+            [['designation', 'prix','description'], 'string', 'max' => 255],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];

@@ -23,9 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="fa fa-trash"></i>', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
-            'class' => 'btn btn-danger',
-            'data-toggle' => 'modal',
-            'data-target' => '#modalDefault'
+'data-toggle' => 'modal',
+                     'class' => 'btn btn-danger',
+               'data-target' => '#modalDefault'
 /*            'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
@@ -34,6 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 </div>
+
+<div class="col-md-12">
+
+    <div class="col-md-5" style="margin-top:-1%; ">
+        <img class="" src="<?php echo Yii::$app->homeUrl.'images/abonnements/'.strtolower($model->typeAbonnement->designation).'-card.jpg' ?>" alt="Card image" style="height:200px; width:100%;" />
+    </div>
+
+    <div class="col-md-7">
 
 <?= DetailView::widget([
     'model' => $model,
@@ -56,4 +64,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]) ?>
 
+</div>
 </div>

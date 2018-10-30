@@ -46,8 +46,17 @@ $datefin  = date('d/m/Y', strtotime('+365 day'));
 
     <?php foreach ($typeabonnements as $typeabonnement): ?>
       <div id="description_<?= $typeabonnement->id ?>" style="display: none; z-index: 2000; border: 1px solid #fff; border-radius: 20px; box-shadow: 1px 2px 2px #ccc; font-size: 15px; margin-top: -20px;" class="col-sm-12 'btn btn-outline-primary">
-         Abonnement: <?= $typeabonnement->designation ?>;<br> 
-         coût:  <?= $typeabonnement->prix ?>;<br>
+      <div class="col-md-3">
+        <img class="" src="<?php echo Yii::$app->homeUrl.'images/abonnements/'.strtolower($typeabonnement->designation).'-card.jpg' ?>" alt="Card image" style="height:80px; width:100%;" />
+      </div>
+      <div class="col-md-9">
+        <table class="table table-hover table-stripped table-condensed">
+          <tr><th>Abonnement</th><td><?= $typeabonnement->designation ?></td></tr>
+          <tr><th>coût</th><td><?= $typeabonnement->prix ?></td></tr>
+          <tr><td colspan="2"><?= $typeabonnement->description ?></td></tr>
+        </table> 
+      </div>
+         
       </div>
     <?php endforeach ?>
   </div>
