@@ -10,6 +10,7 @@ use yii\helpers\Html;
 $this->title = 'Crée un ticket';
 $this->params['breadcrumbs'][] = ['label' => 'Tickets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="ticket-create" >
