@@ -93,10 +93,10 @@ class ActiviteController extends Controller
                         Yii::$app->session->setFlash('success', 'L\'activité est crée avec succès');
                         return $this->redirect(['view', 'id' => $model->id]);
                     }else{
+                        //print_r($model->getErrors());
                         Yii::$app->session->setFlash('error', 'Echec de création de l\'activité');
                     }
                 }else{
-                    print_r($model->getErrors());
 
                     Yii::$app->session->setFlash('error', 'Echec de chargement de l\'image');
                 }
@@ -114,7 +114,7 @@ class ActiviteController extends Controller
     }
 
     /**
-     * Updates an existing Activite model.
+     * Updates an existing Activite model..
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -158,7 +158,7 @@ class ActiviteController extends Controller
                     return $this->redirect(['view', 'id' => $model->id]);
                 }else{
                         //print_r($model->getErrors());
-
+                        Yii::$app->session->setFlash('error', 'Echec de création de l\'activité');
                 }
 
             }

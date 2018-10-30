@@ -5,6 +5,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\editeur\models\Ticket */
+/**/
 
 $this->title = 'Crée un ticket';
 $this->params['breadcrumbs'][] = ['label' => 'Tickets', 'url' => ['index']];
@@ -18,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?= $this->render('_form', [
 		'model' => $model,
 		'activites' => $activites,
-		'typetickets' => $typetickets,
 		'validites' => $validites,
+		//'typetickets' => $typetickets,
 	]) ?>
 
 </div>

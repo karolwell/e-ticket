@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\editeur\models\Ticket */
 /* @var $form yii\widgets\ActiveForm */
+/**/
 ?>
 
 
@@ -239,15 +240,15 @@ function flip_periode(){
         </div>
 
 
-        <div class="form-group row">
+<!--         <div class="form-group row">
             <label>Type ticket</label>
             <select id="typeticket" name="type_ticketId" class="form-control normal-rounded-input" id="select-input" onchange="">
               <option>...</option>
-              <?php foreach ($typetickets as $typeticket): ?>
-                <option value="<?= $typeticket->id.'-'.$typeticket->designation  ?>"><?= $typeticket->designation ?></option>
-            <?php endforeach ?>
+              <?php //foreach ($typetickets as $typeticket): ?>
+                <option value="<?//= $typeticket->id.'-'.$typeticket->designation  ?>"><?//= $typeticket->designation ?></option>
+            <?php //endforeach ?>
         </select>
-    </div>
+    </div> -->
 
     <!-- <?= $form->field($model, 'type_ticketId')->textInput() ?> -->
 
@@ -318,7 +319,7 @@ function flip_periode(){
     <div class="custom-file" style="margin-top: 20px;">
      <!--  <input class="custom-file-input" type="file" id="file-input" name="imageFile" onchange="print_file();" /> -->
      <?= $form->field($model, 'imageFile')->fileInput(['id'=>'file-input', 'class'=>'custom-file-input', 'onchange'=>'print_file();']) ?>
-     <label class="custom-file-label" for="file-input" id="logo">Charger un logo...</label>
+     <label class="custom-file-label" for="file-input" id="logo">Charger une image...</label>
  </div>
 
  <div class="form-group">

@@ -4,7 +4,7 @@ namespace frontend\modules\editeur\models;
 
 use Yii;
 use yii\web\UploadedFile;
-
+/**/
 /**
  * This is the model class for table "ticket".
  *
@@ -15,10 +15,11 @@ use yii\web\UploadedFile;
  * @property integer $type_ticketId
  * @property integer $activiteId
  * @property string $periode
- * @property integer $validiteId
+ * @property integer $validiteId 
  * @property integer $duree_validite
  * @property integer $nombre_validation
  * @property string $image
+ * @property integer $etat
  *
  * @property AchatDetails[] $achatDetails
  * @property TypeTicket $typeTicket
@@ -51,7 +52,8 @@ class Ticket extends \yii\db\ActiveRecord
     {
         return [
             [['prix', 'type_ticketId', 'activiteId', 'validiteId', 'duree_validite', 'nombre_validation'], 'integer'],
-            [['designation','prix','type_ticketId', 'activiteId','validiteId'], 'required'],
+            [['designation','prix'/*,'type_ticketId'*/, 'activiteId','validiteId'], 'required'],
+            [['image'], 'required','on'=>'create'],
             [['designation', 'nombre_ticket', 'periode'], 'string', 'max' => 255],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['type_ticketId'], 'exist', 'skipOnError' => true, 'targetClass' => TypeTicket::className(), 'targetAttribute' => ['type_ticketId' => 'id']],

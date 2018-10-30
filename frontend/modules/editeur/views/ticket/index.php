@@ -3,10 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-
-use frontend\modules\editeur\models\Activite;
-use frontend\modules\editeur\models\TypeTicket;
-use frontend\modules\editeur\models\Validite;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\editeur\models\TicketSearch */
@@ -46,109 +43,37 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 
-        <div>
 
-           <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            
-            'layout' => '{items}{pager}',
-        //'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
+                <div class="row container">
 
-            //'id',
-                'designation',
-                'prix',
-                'nombre_ticket'=>[
-                    'label'=>'Nombre',
-                    'value'=>'nombre_ticket',
+            <?php
+                       //$pjax =  Pjax::begin();
+            $empty_message = '<div class="alert-danger alert fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
+
+
+            echo ListView::widget([
+                'dataProvider' => $dataProvider,
+                'options' => [
+                    'class' => '.list-view col-md-10',
                 ],
-                [
-                    'attribute'=>'type_ticketId',
-                    'label'=>'Type',
-                    //'value'=>'type_ticketId'
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $type=TypeTicket::find()->where(['id'=>$data['type_ticketId']])->one()->designation;
-                        return $type;
-                    }
-                ],
-                'activiteId'=>[
-                    'label'=>'Activite',
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $activite=Activite::find()->where(['id'=>$data['activiteId']])->one()->designation;
-                        return $activite;
-                    }
-                ],
+                'itemOptions' => ['class' => ''],
+                'emptyText' => $empty_message,
+                'summary' => false,
+                'layout' => '{items}<div class="pagination-wrap">{pager}</div>',
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_ticket', ['model' => $model]);
+                },
 
-                'periode'=>[
-                    'label'=>'Periode',
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $data['periode']?$periode=$data['periode']:$periode="-";
-                        return $periode;
-                    }
-                ],
-                'validiteId'=>[
-                    'label'=>'Validite',
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $Validite=Validite::find()->where(['id'=>$data['validiteId']])->one()->designation;
-                        return $Validite;
-                    }
-                ],
-                'duree_validite'=>[
-                    'label'=>'Duree',
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $data['duree_validite']?$duree_validite=$data['duree_validite']:$duree_validite="-";
-                        return $duree_validite;
-                    }
-                ],
-                'nombre_validation'=>[
-                    'label'=>'Nombre validation',
-                    'value'=>function($data){
-                                //echo $data['type_ticketId'];
-                        $data['nombre_validation']?$nombre_validation=$data['nombre_validation']:$nombre_validation="-";
-                        return $nombre_validation;
-                    }
-                ],
+            ]);
+                        //Pjax::end();
+            ?> 
 
-                [
-                  'class' => 'yii\grid\ActionColumn',
-                  'header' => 'Actions',
-                  'headerOptions' => ['style' => 'color:#337ab7'],
-                  'template' => '{view}{update}{delete}',
-                  'buttons' => [
-                    'view' => function ($url, $data) {
-                        $url = Url::to(['view','id'=>$data['id']]);
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-                            'title' => Yii::t('app', 'Détails'),
-                        ]);
-                    },
 
-                    'update' => function ($url, $data) {
-                        $url = Url::to(['view','id'=>$data['id']]);
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                            'title' => Yii::t('app', 'Mise à jour'),
-                        ]);
-                    },
-                    'delete' => function ($url, $data) {
-                        $url = Url::to(['view','id'=>$data['id']]);
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                            'title' => Yii::t('app', 'Supprimer'),
-                        ]);
-                    }
+        </div>
+    </div>
+    <?php else: ?>
 
-                ],
+        <div class="alert alert-info col-md-12"> Aucun ticket disponible ...</div>
 
-            ],
-        ],
-    ]); ?>
-</div>
-<?php else: ?>
-
-    <div class="alert alert-info col-md-12"> Aucun ticket n'est en cours ...</div>
-
-<?php endif ?>
+    <?php endif ?>
+ 

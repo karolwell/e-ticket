@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\editeur\models\Ticket */
-
+/**/
 $this->title = 'Mise à jour Ticket: ' . $model->activite->designation.'|'.$model->designation;
 $this->params['breadcrumbs'][] = ['label' => 'Tickets', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = 'Mise à jour';
@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->activite->designation.'|'.$
 	<?= $this->render('_form', [
 		'model' => $model,
 		'activites' => $activites,
-		'typetickets' => $typetickets,
 		'validites' => $validites,
+		//'typetickets' => $typetickets,
 	]) ?>
 
 </div>

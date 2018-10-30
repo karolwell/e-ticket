@@ -35,12 +35,7 @@ class TicketController extends Controller
             ],
         ];
     }
-
-    /**
-     * Lists all Ticket models.
-     * @return mixed
-     */
-    public function actionIndex()
+/*    public function actionIndex()
     {
         //$searchModel = new TicketSearch();
         $dataProvider = null;
@@ -56,6 +51,26 @@ class TicketController extends Controller
         ]); 
         //print_r($dataProvider->getModels());exit;
 
+        $this->layout = 'main_';
+        return $this->render('index', [
+            //'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }*/
+
+    /**
+     * Lists all Ticket models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $activiteIds=Activite::find()->select(['id'])->where(['editeurId'=>Yii::$app->user->identity->id]);
+        //print_r($activiteIds); exit;
+        $dataProvider = $dataProvider = new ActiveDataProvider([
+            'query' => Ticket::find()->where(['activiteId'=>$activiteIds]),
+        ]); 
+
+        //print_r($dataProvider); exit;
         $this->layout = 'main_';
         return $this->render('index', [
             //'searchModel' => $searchModel,
@@ -85,19 +100,20 @@ class TicketController extends Controller
     {
         $model = new Ticket();
 
+        //$typetickets = TypeTicket::find(['etat'=>1,'editeurId'=>Yii::$app->user->identity->id])->all();
         $activites = Activite::find(['etat'=>1])->all();
-        $typetickets = TypeTicket::find(['etat'=>1,'editeurId'=>Yii::$app->user->identity->id])->all();
         $validites = Validite::find(['etat'=>1])->all();
+        $model->setScenario('create');
 
         if ($model->load(Yii::$app->request->post())) {
 
+            //$type_ticketId = explode('-',Yii::$app->request->post()['type_ticketId'])[0];
             $activiteId = explode('-',Yii::$app->request->post()['activiteId'])[0];
-            $type_ticketId = explode('-',Yii::$app->request->post()['type_ticketId'])[0];
             $validiteId = explode('-',Yii::$app->request->post()['validiteId'])[0];
 
             //print_r($activiteId);exit;
 
-            $ticket = $model->find()->where(['activiteId'=>$activiteId,'type_ticketId'=>$type_ticketId,'validiteId'=>$validiteId,
+            $ticket = $model->find()->where(['activiteId'=>$activiteId,/*'type_ticketId'=>$type_ticketId*/'validiteId'=>$validiteId,
               'designation'=>$model->designation,'prix'=>$model->prix,'nombre_validation'=>$model->nombre_validation,'periode'=>$model->periode,
               'duree_validite'=>$model->duree_validite
           ])->one();
@@ -106,7 +122,7 @@ class TicketController extends Controller
 
                 $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                 $model->activiteId = $activiteId;
-                $model->type_ticketId = $type_ticketId;
+                //$model->type_ticketId = $type_ticketId;
                 $model->validiteId = $validiteId;
 
                 if($model->imageFile){
@@ -117,7 +133,11 @@ class TicketController extends Controller
                         if ($model->save()) {
 
                             Yii::$app->session->setFlash('success', 'Le ticket est ajouté avec succès');
+                        }else{
+                        //print_r($model->getErrors());
+                            Yii::$app->session->setFlash('error', 'Echec de création de du ticket');
                         }
+
                     }else{
                         Yii::$app->session->setFlash('error', 'L\' image du ticket n\'est pas chargé');
                     }
@@ -138,8 +158,8 @@ class TicketController extends Controller
         return $this->render('create', [
             'model' => $model,
             'activites' => $activites,
-            'typetickets' => $typetickets,
             'validites' => $validites,
+            //'typetickets' => $typetickets,
         ]);
     }
 
@@ -153,8 +173,8 @@ class TicketController extends Controller
     {
         $model = $this->findModel($id);
 
+        //$typetickets = TypeTicket::find(['etat'=>1,'editeurId'=>Yii::$app->user->identity->id])->all();
         $activites = Activite::find(['etat'=>1])->all();
-        $typetickets = TypeTicket::find(['etat'=>1,'editeurId'=>Yii::$app->user->identity->id])->all();
         $validites = Validite::find(['etat'=>1])->all();
 
 
@@ -165,9 +185,9 @@ class TicketController extends Controller
             $validiteId = explode('-',Yii::$app->request->post()['validiteId'])[0];
 
 
+            //$model->type_ticketId = $type_ticketId;
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             $model->activiteId = $activiteId;
-            $model->type_ticketId = $type_ticketId;
             $model->validiteId = $validiteId;
 
             if($model->imageFile){
@@ -178,12 +198,22 @@ class TicketController extends Controller
                     if ($model->save()) {
 
                         Yii::$app->session->setFlash('success', 'La mise à jour du ticket est efectuée avec succès');
+                    }else{
+                        //print_r($model->getErrors());
+                        Yii::$app->session->setFlash('error', 'Echec de mise à jour  du ticket');
                     }
+
                 }else{
                     Yii::$app->session->setFlash('error', 'L\' image du ticket n\'est pas chargé');
                 }
             }else{
-                Yii::$app->session->setFlash('error', 'Veuillez choisir une image ...');
+                if ($model->save()) {
+
+                    Yii::$app->session->setFlash('success', 'La mise à jour du ticket est efectuée avec succès');
+                }else{
+                        //print_r($model->getErrors());
+                    Yii::$app->session->setFlash('error', 'Echec de mise à jour  du ticket');
+                }
             }
 
         }
@@ -197,8 +227,8 @@ class TicketController extends Controller
         return $this->render('update', [
             'model' => $model,
             'activites' => $activites,
-            'typetickets' => $typetickets,
             'validites' => $validites,
+            // 'typetickets' => $typetickets,
         ]);
     }
 

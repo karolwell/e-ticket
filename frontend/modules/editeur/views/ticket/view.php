@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\editeur\models\Ticket */
-
+/**/
 $this->title = $model->activite->designation.'|'.$model->designation;
 $this->params['breadcrumbs'][] = ['label' => 'Tickets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="col-md-12">
 
-    <div class="col-md-5" style="">
+    <div class="col-md-5" style="margin-top: -3%;">
         <img src="<?= Yii::$app->homeUrl.'images/tickets/'.$model->image ?>" style="width: 100%; height: 225px;
         margin-top: 60px; border: solid 2px #dddddd;" />
     </div>
@@ -75,10 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'designation',
             'prix',
             'nombre_ticket',
-            'type_ticketId'=>[
+            /*'type_ticketId'=>[
                 "label"=>"Type",
                 "value"=> $model->typeTicket->designation,
-            ],
+            ],*/
             'periode',
             'validiteId'=>[
                 "label"=>"Validite",
