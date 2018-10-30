@@ -180,8 +180,8 @@ class TicketController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            //$type_ticketId = explode('-',Yii::$app->request->post()['type_ticketId'])[0];
             $activiteId = explode('-',Yii::$app->request->post()['activiteId'])[0];
-            $type_ticketId = explode('-',Yii::$app->request->post()['type_ticketId'])[0];
             $validiteId = explode('-',Yii::$app->request->post()['validiteId'])[0];
 
 

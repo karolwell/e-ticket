@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\editeur\models\Ticket */
 /**/
-$this->title = 'Mise à jour Ticket: ' . $model->activite->designation.'|'.$model->designation;
+$this->title = 'Mise à jour Ticket: '.$model->activite->designation.'|'.$model->designation;
 $this->params['breadcrumbs'][] = ['label' => 'Tickets', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = 'Mise à jour';
 $this->params['breadcrumbs'][] = ['label' => $model->activite->designation.'|'.$model->designation, 'url' => ['view', 'id' => $model->id]];
