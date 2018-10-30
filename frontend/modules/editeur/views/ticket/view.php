@@ -83,9 +83,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 "label"=>"Validite",
                 "value"=> $model->validite->designation,
             ],
-            'periode',
-            'duree_validite',
-            'nombre_validation',
+                'periode'=>[
+                "label"=>"Période (Min)",
+                "value"=> $model->periode,
+            ],
+            'duree_validite'=>[
+                "label"=>"Duree (J)",
+                "value"=> $model->periode,
+            ],
+            'nombre_validation'=>[
+                "label"=>"Nombre validation (J)",
+                "value"=> $model->nombre_validation,
+            ],
         ],
     ]) ?>
 

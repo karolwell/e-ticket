@@ -273,35 +273,35 @@ if(e>=1 && r!=0){
 <!-- <?= $form->field($model, 'validiteId')->textInput() ?> -->
 <div class="form-group" style="margin-left: -15px;">
 
-    <div id="periode"  class="" style="display: <?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode')?'':'none';  ?> none; margin-left: -15px;">
+    <div id="periode"  class="" style="display: <?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode')?'none':'';  ?> margin-left: -15px;">
 
         <div id=""  class="col-md-11" style="">
-            <?= $form->field($model, 'periode')->textInput(['id'=>'temps','type'=>'range','value'=>'<?= !$model->isNewRecord?"none":0;  ?>','min'=>'0','max'=>'1440','step'=>'5','oninput'=>'flip_periode();']) ?>
+            <?= $form->field($model, 'periode')->textInput(['id'=>'temps','type'=>'range','value'=>(!$model->isNewRecord)?(int)$model->periode:0,'min'=>'0','max'=>'1440','step'=>'5','oninput'=>'flip_periode();']) ?>
         </div>        
         <div id=""  class="col-md-1" style="">
-            <button id="t" name="Ticket[periode]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;">0</button>
+            <button id="t" name="Ticket[periode]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;"><?= (!$model->isNewRecord)?((int)($model->periode/60)).'H '.($model->periode%60).'Min':(int)'0'.'Min';  ?></button>
         </div>
 
     </div>
 
-    <div id="nombre_validation"  class="" style="display: none; margin-left: -15px;">
+    <div id="nombre_validation"  class="" style="<?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode'||$model->validite->designation=='usage multiple')?'none':'';  ?> margin-left: -15px;">
 
         <div id=""  class="col-md-11" style="">
-            <?= $form->field($model, 'nombre_validation')->textInput(['id'=>'nombre','type'=>'range','value'=>'1','min'=>'1','max'=>'100','step'=>'1','oninput'=>'flip_nombre();']) ?>
+            <?= $form->field($model, 'nombre_validation')->textInput(['id'=>'nombre','type'=>'range','value'=>(!$model->isNewRecord)?(int)$model->nombre_validation:1,'min'=>'1','max'=>'100','step'=>'1','oninput'=>'flip_nombre();']) ?>
         </div>        
         <div id=""  class="col-md-1" style="">
-            <button id="n" name="Ticket[nombre_validation]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;">0</button>
+            <button id="n" name="Ticket[nombre_validation]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;"><?= (!$model->isNewRecord)?$model->nombre_validation.'x':(int)'1'.'x';  ?></button>
         </div>
 
     </div>
 
-    <div id="duree_validite"  class="" style="display: none; margin-left: -15px;">
+    <div id="duree_validite"  class="" style="display: <?= (!$model->isNewRecord)?'none':'';  ?> margin-left: -15px;">
 
         <div id=""  class="col-md-11" style="">
             <?= $form->field($model, 'duree_validite')->textInput(['id'=>'duree','type'=>'range','value'=>'0','min'=>'0','max'=>'180','step'=>'1','oninput'=>'flip_duree();']) ?>
         </div>        
         <div id=""  class="col-md-1" style="">
-            <button id="r" name="Ticket[duree_validite]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;">0</button>
+            <button id="r" name="Ticket[duree_validite]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;"><?= (!$model->isNewRecord)?((int)($model->duree_validite/30)).'M '.($model->duree_validite%30).'J':(int)'0'.'J';  ?></button>
         </div>
 
     </div>
