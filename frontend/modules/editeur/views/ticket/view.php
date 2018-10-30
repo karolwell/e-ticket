@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-md-3">
 
     <p>
-        <?= Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary','type' => 'button','data-toggle'=>'modal','data-target'=>'#modalDefault']) ?>
+        <?= Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary','type' => 'button']) ?>
         <?= Html::a('<i class="fa fa-trash"></i>', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger', 'type' => 'button',
             'data-toggle'=>'modal',
@@ -79,11 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 "label"=>"Type",
                 "value"=> $model->typeTicket->designation,
             ],*/
-            'periode',
             'validiteId'=>[
                 "label"=>"Validite",
                 "value"=> $model->validite->designation,
             ],
+            'periode',
             'duree_validite',
             'nombre_validation',
         ],

@@ -156,11 +156,11 @@ use yii\widgets\ActiveForm;
         var r = d%30 ;
 
         if(e<1){
-           $('#r').text('');
-           $('#r').text(d+'J');
-       }
+         $('#r').text('');
+         $('#r').text(d+'J');
+     }
 
-       if(e>=1 && r==0){
+     if(e>=1 && r==0){
         $('#r').text('');
         $('#r').text(e+'M');
     }
@@ -187,19 +187,19 @@ function flip_periode(){
     var r = d%60 ;
 
     if(e<1){
-       $('#t').text('');
-       $('#t').text(d+'Min');
-   }
+     $('#t').text('');
+     $('#t').text(d+'Min');
+ }
 
-   if(e>=1 && r==0){
+ if(e>=1 && r==0){
     $('#t').text('');
     $('#t').text(e+'H');
-   }
+}
 
-   if(e>=1 && r!=0){
+if(e>=1 && r!=0){
     $('#t').text('');
     $('#t').text(e+'H '+r+'Min');
-   }
+}
 
 }
 
@@ -232,12 +232,16 @@ function flip_periode(){
         <div class="form-group row">
             <label>Activités</label>
             <select id="activite" name="activiteId" class="form-control normal-rounded-input" id="select-input" onchange="showInput1()">
-                <option>...</option>
-                <?php foreach ($activites as $activite): ?>
-                    <option value="<?= $activite->id.'-'.$activite->categorieActivite->designation ?>"><?= $activite->designation ?></option>
-                <?php endforeach ?>
-            </select>
-        </div>
+                <?php if (!$model->isNewRecord): ?>
+                  <option value="<?= $model->activite->id.'-'.$model->activite->categorieActivite->designation ?>"><?= $model->activite->designation ?></option>
+              <?php else: ?>
+                  <option>...</option>
+              <?php endif ?>
+              <?php foreach ($activites as $activite): ?>
+                <option value="<?= $activite->id.'-'.$activite->categorieActivite->designation ?>"><?= $activite->designation ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
 
 
 <!--         <div class="form-group row">
@@ -255,7 +259,11 @@ function flip_periode(){
     <div class="form-group row">
         <label>Valitité</label>
         <select id="validite" name="validiteId" class="form-control normal-rounded-input" id="select-input" onchange="showInput2()">
-          <option>...</option>
+            <?php if (!$model->isNewRecord): ?>
+              <option value="<?= $model->validite->id.'-'.$model->validite->designation ?>"><?= $model->validite ->designation ?></option>
+          <?php else: ?>
+              <option>...</option>
+          <?php endif ?>
           <?php foreach ($validites as $validite): ?>
             <option value="<?= $validite->id.'-'.$validite->designation ?>"><?= trim($validite->designation) ?></option>
         <?php endforeach ?>
@@ -265,10 +273,10 @@ function flip_periode(){
 <!-- <?= $form->field($model, 'validiteId')->textInput() ?> -->
 <div class="form-group" style="margin-left: -15px;">
 
-    <div id="periode"  class="" style="display: none; margin-left: -15px;">
+    <div id="periode"  class="" style="display: <?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode')?'':'none';  ?> none; margin-left: -15px;">
 
         <div id=""  class="col-md-11" style="">
-            <?= $form->field($model, 'periode')->textInput(['id'=>'temps','type'=>'range','value'=>'0','min'=>'0','max'=>'1440','step'=>'5','oninput'=>'flip_periode();']) ?>
+            <?= $form->field($model, 'periode')->textInput(['id'=>'temps','type'=>'range','value'=>'<?= !$model->isNewRecord?"none":0;  ?>','min'=>'0','max'=>'1440','step'=>'5','oninput'=>'flip_periode();']) ?>
         </div>        
         <div id=""  class="col-md-1" style="">
             <button id="t" name="Ticket[periode]" class="btn btn-primary" style="margin-top: 27px; margin-left: -15px;">0</button>
@@ -316,13 +324,17 @@ function flip_periode(){
 
     <?= $form->field($model, 'nombre_ticket')->textInput(['maxlength' => true]) ?>
 
+   <?php if (!$model->isNewRecord): ?>
+    <img class="" src="<?php echo Yii::$app->homeUrl.'images/tickets/'.$model->image ?>" alt="Card image" style="height:200px; width:100%;" />
+   <?php endif ?>
     <div class="custom-file" style="margin-top: 20px;">
-     <!--  <input class="custom-file-input" type="file" id="file-input" name="imageFile" onchange="print_file();" /> -->
-     <?= $form->field($model, 'imageFile')->fileInput(['id'=>'file-input', 'class'=>'custom-file-input', 'onchange'=>'print_file();']) ?>
-     <label class="custom-file-label" for="file-input" id="logo">Charger une image...</label>
- </div>
+       <!--  <input class="custom-file-input" type="file" id="file-input" name="imageFile" onchange="print_file();" /> -->
 
- <div class="form-group">
+       <?= $form->field($model, 'imageFile')->fileInput(['id'=>'file-input', 'class'=>'custom-file-input', 'onchange'=>'print_file();']) ?>
+       <label class="custom-file-label" for="file-input" id="logo">Charger une image...</label>
+   </div>
+
+   <div class="form-group">
     <br>
     <?= Html::Button('<i class="fa fa-arrow-left"></i> precedent', ['onclick' =>'precedent();','class' => 'btn btn-outline-primary col-md-5']) ?>
     <?= Html::submitButton($model->isNewRecord ? 'Valider' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-outline-success col-md-6' : 'btn btn-outline-primary']) ?>
