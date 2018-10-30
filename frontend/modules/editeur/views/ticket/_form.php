@@ -284,7 +284,7 @@ if(e>=1 && r!=0){
 
     </div>
 
-    <div id="nombre_validation"  class="" style="<?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode'||$model->validite->designation=='usage multiple')?'none':'';  ?> margin-left: -15px;">
+    <div id="nombre_validation"  class="" style="<?= (!$model->isNewRecord||$model->validite->designation=='usage multiple avec periode'||$model->validite->designation=='usage unique avec periode')?'none':'';  ?> margin-left: -15px;">
 
         <div id=""  class="col-md-11" style="">
             <?= $form->field($model, 'nombre_validation')->textInput(['id'=>'nombre','type'=>'range','value'=>(!$model->isNewRecord)?(int)$model->nombre_validation:1,'min'=>'1','max'=>'100','step'=>'1','oninput'=>'flip_nombre();']) ?>
