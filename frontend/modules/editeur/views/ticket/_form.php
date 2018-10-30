@@ -157,11 +157,11 @@ use yii\widgets\ActiveForm;
         var r = d%30 ;
 
         if(e<1){
-           $('#r').text('');
-           $('#r').text(d+'J');
-       }
+         $('#r').text('');
+         $('#r').text(d+'J');
+     }
 
-       if(e>=1 && r==0){
+     if(e>=1 && r==0){
         $('#r').text('');
         $('#r').text(e+'M');
     }
@@ -188,11 +188,11 @@ function flip_periode(){
     var r = d%60 ;
 
     if(e<1){
-       $('#t').text('');
-       $('#t').text(d+'Min');
-   }
+     $('#t').text('');
+     $('#t').text(d+'Min');
+ }
 
-   if(e>=1 && r==0){
+ if(e>=1 && r==0){
     $('#t').text('');
     $('#t').text(e+'H');
 }
@@ -264,10 +264,10 @@ if(e>=1 && r!=0){
               <option value="<?= $model->validite->id.'-'.$model->validite->designation ?>"><?= $model->validite ->designation ?></option>
           <?php else: ?>
               <option>...</option>
-              <?php foreach ($validites as $validite): ?>
-                <option value="<?= $validite->id.'-'.$validite->designation ?>"><?= $validite->designation ?></option>
-            <?php endforeach ?>
-        <?php endif ?>
+          <?php endif ?>
+          <?php foreach ($validites as $validite): ?>
+            <option value="<?= $validite->id.'-'.$validite->designation ?>"><?= $validite->designation ?></option>
+        <?php endforeach ?>
     </select>
 </div>
 
@@ -329,13 +329,13 @@ if(e>=1 && r!=0){
         <img class="" src="<?php echo Yii::$app->homeUrl.'images/tickets/'.$model->image ?>" alt="Card image" style="height:200px; width:100%;" />
     <?php endif ?>
     <div class="custom-file" style="margin-top: 20px;">
-     <!--  <input class="custom-file-input" type="file" id="file-input" name="imageFile" onchange="print_file();" /> -->
+       <!--  <input class="custom-file-input" type="file" id="file-input" name="imageFile" onchange="print_file();" /> -->
 
-     <?= $form->field($model, 'imageFile')->fileInput(['id'=>'file-input', 'class'=>'custom-file-input', 'onchange'=>'print_file();']) ?>
-     <label class="custom-file-label" for="file-input" id="logo">Charger une image...</label>
- </div>
+       <?= $form->field($model, 'imageFile')->fileInput(['id'=>'file-input', 'class'=>'custom-file-input', 'onchange'=>'print_file();']) ?>
+       <label class="custom-file-label" for="file-input" id="logo">Charger une image...</label>
+   </div>
 
- <div class="form-group">
+   <div class="form-group">
     <br>
     <?= Html::Button('<i class="fa fa-arrow-left"></i> precedent', ['onclick' =>'precedent();','class' => 'btn btn-outline-primary col-md-5']) ?>
     <?= Html::submitButton($model->isNewRecord ? 'Valider' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-outline-success col-md-6' : 'btn btn-outline-primary']) ?>
