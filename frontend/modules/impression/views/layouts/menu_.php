@@ -1,0 +1,28 @@
+<ul id="accordion" class="accordion" style="position: static;">
+  <li >
+    <div class="link"><i class="fa fa-dashboard"></i>Bord<i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+      <li style="" ><a href="<?php echo Yii::$app->homeUrl ?>editeur/bord/index"> Tableau de bord </a></li>
+    </ul>
+  </li>
+  <li>
+    <div class="link"><i class="fa fa-pencil"></i> Souscription <i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+      <li><a href="<?php echo Yii::$app->homeUrl ?>editeur/abonnement/index">Consulter</a></li>
+      <li><a href="<?php echo Yii::$app->homeUrl ?>editeur/abonnement/create">Sourcrire</a></li>
+    </ul>
+  </li>
+  <li>
+    <div class="link"><i class="fa fa-clock-o"></i> Activité <i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+      <li><a href="<?php echo Yii::$app->homeUrl ?>editeur/activite/index">Liste</a></li>
+      <li><a href="<?php echo Yii::$app->homeUrl ?>editeur/activite/create">Créer</a></li>
+    </ul>
+  </li>
+  <li>
+    <div class="link"><i class="fa fa-cog"></i> Configuration <i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+      <li><a href="#">Authenticité</a></li>
+    </ul>
+  </li>
+</ul> 
