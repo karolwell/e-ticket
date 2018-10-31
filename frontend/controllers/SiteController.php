@@ -146,7 +146,8 @@ class SiteController extends Controller
             ]);
          }
      }
-     if($session['all']){
+     //unset($session['all']);exit;
+     if(isset($session['all'])){
 
         $tickets = $session['all'];
 

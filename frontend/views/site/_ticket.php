@@ -25,9 +25,9 @@
 		<?php if ($model['disponible']=='ok'): ?>
 
 
-			<input id="p_<?= $key ?>" style="display: none;" type="range" value="<?= $model['etat_panier']==1?  $model['compte_panier'] :  1 ?>" min="1" max="20" step="1" oninput="flip_panier(<?= $key ?>);" />
-
 			<button id="n_<?= $key ?>" class="btn btn-secondary btn btn-wishlist" style="color: #0da9ef; font-weight: bold; font-size: 13px; display: <?php if ($model['etat_panier']==0) echo 'none' ?>;" data-toggle="tooltip" title="Whishlist"> <?= $model['compte_panier'] ?></button>
+
+			<input id="p_<?= $key ?>" style="display: none;" type="range" value="<?= $model['etat_panier']==1?  $model['compte_panier'] :  1 ?>" min="1" max="20" step="1" oninput="flip_panier(<?= $key ?>);" />
 
 			<button id="r_<?= $key ?>" style="display: <?php if ($model['etat_panier']==0) echo 'none' ?>;" class="btn btn-outline-danger btn-sm" data-toast data-toast-type="danger" data-toast-position="topRight" data-toast-icon="fa fa-trash" data-toast-title="Ticket " data-toast-message=" retirer avec succès!" onclick="retirer(<?= $key ?>,<?= $model['etat_panier']==0?  1:  0 ?>);"><i class="fa fa-shopping-cart"></i> Retirer </button>
 
