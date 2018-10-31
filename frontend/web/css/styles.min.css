@@ -7413,15 +7413,17 @@ video {
 }
 
 .card_:hover{
-    border-right: 0.02px solid #0da9ef;
+    border-right: 3px solid #0da9ef;
+    border-radius: 0px 10px 10px 10px;
     /*box-shadow:  0.5px 0.2px 0.1px #0da9ef;*/
     width: 110%;
     height: auto;
-    z-index: 1000;
+    z-index: 100;
     margin-left: -15px;
     transition:  .01s;
     /*transition-delay: .01s;*/
     transform: scale3d(1, 1.1, 2);
+    background: #fff;
 }
 
 .product-card {
