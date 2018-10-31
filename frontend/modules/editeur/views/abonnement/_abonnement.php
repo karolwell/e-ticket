@@ -23,7 +23,7 @@ use frontend\modules\editeur\models\Activite;
 			<div class=" text-center col-lg-1 col-md-1 row" style="color: #FFF; font-size: 20px; margin-top: 4%; with:5%;">
 				<hr class="margin-top-1x">
 				<div class="col-sm-12"> <a style="color:#3FAABF" href="<?php echo Yii::$app->homeUrl ?>editeur/abonnement/view?id=<?php echo $model->id ?>"  > <i class="fa fa-eye"></i> </a> </div>
-				<div class="col-sm-12"> <a style="color:#3FAABF" href="<?php echo Yii::$app->homeUrl ?>editeur/abonnement/update?id=<?php echo $model->id ?>"> <i class="fa fa-pencil"></i> </a> </div>
+<!-- 				<div class="col-sm-12"> <a style="color:#3FAABF" href="<?php echo Yii::$app->homeUrl ?>editeur/abonnement/update?id=<?php echo $model->id ?>"> <i class="fa fa-pencil"></i> </a> </div> -->
 				<div class="col-sm-12"> <a style="color:#182225" href="" type="button" data-toggle="modal" data-target="#modalDefault"> <i class="fa <?= $model->etat==Activite::STATUS_ACTIVE ?'fa-times':'fa-check'  ?>" ></i> </a> </div>
 				<div class="col-sm-12"> <a style="color:#D73C27" href="" type="button" data-toggle="modal" data-target="#modalDefault"> <i class="fa fa-trash"></i> </a> </div>
 			</div>

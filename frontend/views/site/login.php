@@ -13,7 +13,7 @@ $this->title = 'Connexion';
 <section class=" container padding-top-1x" style="padding: 0px 0px 0px 0px;">
   <!-- <h3 class="text-center mb-30">Top Categories</h3> -->
   <div class="row">
-    <?= $this->render('evenement') ?>
+    <?= $this->render('top_evenement') ?>
 
     <div class="padding-top-1x padding-bottom-7x col-md-9"> 
         <div class="site-login" style="margin-left: 7%; margin-bottom: -10%; margin-top: 2%; ">

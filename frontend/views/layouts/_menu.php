@@ -5,14 +5,19 @@ use yii\web\Session;
 $session = new Session;
 $session->open();
 
-$ticket_sessions = $session['all'];
-$tot_nombre=0; $tot_prix=0;
-foreach ($ticket_sessions as $ticket_session) {
-  if($ticket_session['etat_panier']==1){
-    $tot_nombre += $ticket_session['compte_panier'];
-    $tot_prix += $ticket_session['compte_panier']*$ticket_session['ticket']->prix;
+if(isset($session['all'])){
+
+  $ticket_sessions = $session['all'];
+  $tot_nombre=0; $tot_prix=0;
+  foreach ($ticket_sessions as $ticket_session) {
+    if($ticket_session['etat_panier']==1){
+      $tot_nombre += $ticket_session['compte_panier'];
+      $tot_prix += $ticket_session['compte_panier']*$ticket_session['ticket']->prix;
+    }
   }
+
 }
+
 ?>
 
 <script type="text/javascript">
@@ -471,7 +476,7 @@ foreach ($ticket_sessions as $ticket_session) {
 
                 <div onshow="" class="cart">
                   <a href="#" onmouseover="panier();"></a><i class="fa fa-shopping-cart" ></i>
-                  <?php if ($ticket_sessions): ?> 
+                  <?php if (isset($ticket_sessions)): ?> 
                     <span class="count" id="count"><?= $tot_nombre ?></span><span class="subtotal" id="subtotal"><?= $tot_prix  ?></span> <span>F CFA</span>
                     <?php else: ?>
                       <span class="count" id="count">0</span><span class="subtotal" id="subtotal">0</span> <span>F CFA</span>

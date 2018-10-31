@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-md-3">
 
     <p>
-        <?= Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <!-- <?= Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?> -->
         <?= Html::a('<i class="fa fa-trash"></i>', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
 'data-toggle' => 'modal',
