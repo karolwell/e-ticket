@@ -23,7 +23,7 @@
 </div>
 
 
-<div class="toolbar-dropdown-group">
+<div class="toolbar-dropdown-group" style="border-top: 4px solid #d8e0e6;border-bottom: 4px solid #d8e0e6; border-radius:5%;">
 	<div class="column"></div>
 	<div class="column text-center"><span class="text-lg">Total: </span> <strong class="text-lg text-large"> <?= $total ?>&nbsp; CFA</strong></div>
 </div>

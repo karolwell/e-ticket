@@ -6846,7 +6846,7 @@ video {
     position: relative;
     width: 100%;
     padding: 9px 0;
-    border-top: 1px dashed #d8e0e6
+    border-top: 4px dashed #d8e0e6;
 }
 
 .dropdown-product-item:first-child {
@@ -6860,8 +6860,8 @@ video {
 }
 
 .dropdown-product-item>.dropdown-product-thumb {
-    width: 55px;
-    border-radius: 50%;
+    width: 60px;
+    border-radius: 10%;
     overflow: hidden
 }
 

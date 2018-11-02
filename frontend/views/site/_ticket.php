@@ -1,24 +1,26 @@
 <!-- Product-->
-<div class="product-card product-list margin-bottom-1x" onmouseleave="range_off(<?= $key ?>);">
-	<a class="product-thumb" href="shop-items.html#" >
-	<!-- <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i>
-</div> -->
-<?php if ($model['ticket']->image): ?>		
-	<img style="width: 100%; height: 100px;" src="<?php echo Yii::$app->homeUrl ?>images/tickets/<?= $model['ticket']->image ?>	" alt="Product">
-<?php else: ?>
-	<img style="width: 100%; height: 100px;"  src="<?php echo Yii::$app->homeUrl ?>img/shop/products/ticket.jpg" alt="Product">
-<?php endif ?>
-</a>
-<div class="product-info">
-	<h3 class="product-title"><a href="shop-items.html#"><?= $model['categorie']->designation ?> - <?= $model['activite']->designation ?></a></h3>
-	<h4 class="product-price"><span id="price_<?= $key ?>"><?= $model['ticket']->prix ?></span>  F CFA</h4>
-	<p class="hidden-xs-down"><?= $model['activite']->description ?></p>
-</div>
+<?php if ($key<6): ?>
+		<div class="product-card product-list margin-bottom-1x" onmouseleave="range_off(<?= $key ?>);">
+			<a class="product-thumb" href="shop-items.html#" >
+		<!-- <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i>
+	</div> -->
+	<?php if ($model['ticket']->image): ?>		
+		<img style="width: 100%; height: 100px;" src="<?php echo Yii::$app->homeUrl ?>images/tickets/<?= $model['ticket']->image ?>	" alt="Product">
+	<?php else: ?>
+		<img style="width: 100%; height: 100px;"  src="<?php echo Yii::$app->homeUrl ?>img/shop/products/ticket.jpg" alt="Product">
+	<?php endif ?>
+	</a>
+	<div class="product-info">
+		<h3 class="product-title"><a href="shop-items.html#"><?= $model['categorie']->designation ?> - <?= $model['activite']->designation ?></a></h3>
+		<h4 class="product-price"><span id="price_<?= $key ?>"><?= $model['ticket']->prix ?></span>  F CFA</h4>
+		<p class="hidden-xs-down"><?= $model['activite']->description ?></p>
+	</div>
 	<div>
 		<table class="table table-striped table-hover table-condensed">
 			<tr><th>Disponible</th><td><?= $model['ticket']->nombre_ticket ?></td></tr>
 			<tr><th>Du</th><td><?= $model['activite']->datedebut ?> </td></tr>
 			<tr><th>Au</th><td><?= $model['activite']->datefin ?> </td></tr>
+			<tr><th colspan="2" class="text-center "><i class="fa fa-2x fa-map-marker text-primary"></i>  <?= $model['activite']->lieu ?> </th></tr>
 		</table>
 	</div>
 	<div class="product-buttons pull-left">
@@ -38,4 +40,5 @@
 			<button id="" class="btn btn-outline-secondary btn-sm" data-toast data-toast-type="secondary" data-toast-position="topRight" data-toast-icon="fa fa-lock" data-toast-title="Désolé " data-toast-message=" ticket indisponible!" > Indisponible <i class="fa fa-lock"></i></button>
 		<?php endif ?>
 	</div>
-</div>
+	</div>
+<?php endif ?>

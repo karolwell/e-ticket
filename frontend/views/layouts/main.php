@@ -49,6 +49,121 @@ AppAsset::register($this);
   })(window,document,'script','dataLayer','GTM-T4DJFPZ');
 
 </script>
+<script type="text/javascript">
+
+  function ajouter(ticket){
+
+    var input = {};
+    input.ticket = ticket;
+    input.nombre = $("#p_"+ticket).val();
+    var url = "<?php echo Yii::$app->homeUrl ?>site/ajouter_panier";
+
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: {
+        input: input,
+      },
+      success: function (data) {
+        if(data=='ok'){
+          $("#r_"+ticket).show();
+          $("#a_"+ticket).hide(5);
+
+          var c = parseInt($('#count').text());
+          var s = parseInt($('#subtotal').text());
+          var p = parseInt($('#price_'+ticket).text());
+          var n = parseInt($("#p_"+ticket).val());
+
+          var v = c+n;
+          var w = n*p+s;
+
+          $('#count').text(v);
+          $('#subtotal').text(w);
+
+          if(n==0){
+            $("#n_"+ticket).text(1);
+          }else{
+            $("#n_"+ticket).text(n);
+          }
+
+          $("#p_"+ticket).hide();
+        }
+        
+      }
+    });
+  }
+
+  function retirer(ticket){
+
+    var input = {};
+    input.ticket = ticket;
+    var url = "<?php echo Yii::$app->homeUrl ?>site/retirer_panier";
+
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: {
+        input: input,
+      },
+      success: function (data) {
+        if(data=='ok'){
+          $("#a_"+ticket).show();
+          $("#r_"+ticket).hide(5);
+          $("#p_"+ticket).value==0;
+
+          var c = parseInt($('#count').text());
+          var s = parseInt($('#subtotal').text());
+          var p = parseInt($('#price_'+ticket).text());
+          var n = parseInt($("#p_"+ticket).val());
+
+          var v = c-n;
+          var w = s-n*p;
+
+          if(v<0){$('#count').text(v);}
+          else{$('#count').text(v);}
+
+          if(w<0){$('#subtotal').text(w);}
+          else{$('#subtotal').text(w);}
+
+          
+
+
+        }
+        
+      }
+    });
+
+  }
+
+  function range_on(k){
+
+    $("#p_"+k).show();
+    $("#n_"+k).show();
+
+  }
+
+
+  function range_off(k){
+
+    $("#p_"+k).hide();
+    $("#n_"+k).show();
+    var n = $("#p_"+k).val();
+    var m = $("#n_"+k).val();
+    // alert(n);
+    if(n==1){
+      $("#n_"+k).hide();
+    }
+    //alert(i);
+  }
+
+  function flip_panier(k){
+    var i = $("#p_"+k).val();
+    $("#n_"+k).text(i);
+  }
+
+</script>
 <!-- Modernizr-->
 <script src=""></script>
 </head> 
@@ -67,7 +182,7 @@ AppAsset::register($this);
     </div>
 
     <!-- Popular Brands-->
-    <section class="container padding-top-3x padding-bottom-2x margin-top-1x">
+    <section class="container padding-top-x padding-bottom-2x margin-top-x">
         <div class="">
          <!--  <h3 class="text-center mb-30 pb-2">Les éditeurs</h3> -->
           <div class="owl-carousel" data-owl-carousel="{ &quot;nav&quot;: false, &quot;dots&quot;: false, &quot;loop&quot;: true, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 4000, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:2}, &quot;470&quot;:{&quot;items&quot;:3},&quot;630&quot;:{&quot;items&quot;:4},&quot;991&quot;:{&quot;items&quot;:5},&quot;1200&quot;:{&quot;items&quot;:6}} }"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/01.png" alt="Adidas"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/02.png" alt="Brooks"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/03.png" alt="Valentino"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/04.png" alt="Nike"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/05.png" alt="Puma"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/06.png" alt="New Balance"><img class="d-block w-110 opacity-75 m-auto" src="<?php echo Yii::$app->homeUrl ?>img/brands/07.png" alt="Dior"></div>

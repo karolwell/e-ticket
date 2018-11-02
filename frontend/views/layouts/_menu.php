@@ -360,7 +360,7 @@ if(isset($session['all'])){
               </ul> 
             </li>-->
 
-            <li><a href="account-orders.html"><span><i class=" fa  fa-calendar"></i>  Evenement</span></a>
+            <li><a href="<?php echo Yii::$app->homeUrl ?>site/activites"><span><i class=" fa  fa-calendar"></i>  Evenement</span></a>
 <!--             <ul class="sub-menu">
                 <li><a href="account-login.html">Login / Register</a></li>
                 <li><a href="account-password-recovery.html">Password Recovery</a></li>
@@ -372,7 +372,7 @@ if(isset($session['all'])){
                 <li><a href="account-single-ticket.html">Single Ticket</a></li>
               </ul> -->
             </li>
-            <li class="has-megamenu"><a href="<?php echo Yii::$app->homeUrl ?>site/contact"><span><i class=" fa  fa-ticket"></i>  Ticket</span></a>
+            <li class="has-megamenu"><a href="<?php echo Yii::$app->homeUrl ?>site/tickets"><span><i class=" fa  fa-ticket"></i>  Ticket</span></a>
 <!--               <ul class="mega-menu">
                 <li><span class="mega-menu-title">A - F</span>
                   <ul class="sub-menu">
